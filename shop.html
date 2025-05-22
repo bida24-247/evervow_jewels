@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop - EverVow Jewels</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <script defer src="script.js"></script>
+  <style>
+    /* Cart Notification */
+    .cart-notification {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #28a745;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      animation: fadeIn 0.3s ease-out;
+      z-index: 1000;
+    }
+    
+    .cart-notification .view-cart {
+      color: white;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .fade-out {
+      animation: fadeOut 0.3s ease-in forwards;
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; transform: translateY(0); }
+      to { opacity: 0; transform: translateY(20px); }
+    }
+    
+    /* Category styles */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 30px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .category-tab {
+      padding: 10px 20px;
+      background: #f8f8f8;
+      border: 1px solid #ddd;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .category-tab:hover, .category-tab.active {
+      background: #333;
+      color: white;
+      border-color: #333;
+    }
+    
+    .category-section {
+      display: none;
+    }
+    
+    .category-section.active {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .category-title {
+      text-align: center;
+      margin: 40px 0 20px;
+      font-size: 2rem;
+      color: #333;
+      border-bottom: 2px solid #ddd;
+      padding-bottom: 10px;
+    }
+    
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    
+    .product {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      text-align: center;
+    }
+    
+    .product img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    
+    .add-to-cart {
+      background: #333;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Cart Preview Styles */
+    #cart-preview {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+    }
+
+    #cart-preview.open {
+      right: 0;
+    }
+
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    #cart-items {
+      padding: 15px;
+      max-height: 60vh;
+      overflow-y: auto;
+    }
+
+    .view-cart-btn {
+      display: block;
+      background: #b8860b;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin: 15px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 4px;
+    }
+
+    .remove-item {
+      background: none;
+      border: none;
+      color: #dc3545;
+      cursor: pointer;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-top">
+      <h1>Shop Our Collection</h1>
+      <div id="cart-icon">
+        🛒 <span id="cart-count" class="cart-count">0</span>
+      </div>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="btn btn-evervow">Home</a></li>
+        <li><a href="shop.html" class="btn btn-evervow">Shop Now</a></li>
+        <li><a href="testimonials.html" class="btn btn-evervow">Testimonials</a></li>
+        <li><a href="about.html" class="btn btn-evervow">About Us</a></li>
+        <li><a href="contact.html" class="btn btn-evervow">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="shop">
+    <h2>Our Products</h2>
+    
+    <!-- Category Tabs -->
+    <div class="category-tabs">
+      <div class="category-tab active" data-category="all">All Products</div>
+      <div class="category-tab" data-category="diamond">Diamond</div>
+      <div class="category-tab" data-category="beaded">Beaded</div>
+      <div class="category-tab" data-category="emerald">Emerald/Crystal</div>
+      <div class="category-tab" data-category="gold">Gold</div>
+    </div>
+    
+    <!-- All Products -->
+    <div id="all" class="category-section active">
+      <h3 class="category-title">All Jewelry</h3>
+      <div class="product-list">
+        <!-- Products will be shown here when All is selected -->
+      </div>
+    </div>
+    
+    <!-- Diamond Collection -->
+    <div id="diamond" class="category-section">
+      <h3 class="category-title">Diamond Collection</h3>
+      <div class="product-list">
+        <div class="product">
+          <img src="evervow/evercollection.jpg" alt="Diamond Earrings With Blue Emeralds">
+          <h3>Diamond Earrings With Blue Emeralds</h3>
+          <p>P2500.00</p>
+          <button class="add-to-cart" data-name="Diamond Earrings With Blue Emeralds" data-price="2500">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="evervow/images (2).jpeg" alt="Diamond Ring Set">
+          <h3>Diamond Ring Set</h3>
+          <p>P25000.00</p>
+          <button class="add-to-cart" data-name="Diamond Ring Set" data-price="25000">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="evervow/sabrianna-q_sPpAv0MXE-unsplash.jpg" alt="Diamond Necklace">
+          <h3>Diamond Necklace</h3>
+          <p>P20000.00</p>
+          <button class="add-to-cart" data-name="Diamond Necklace" data-price="20000">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Beaded Jewelry -->
+    <div id="beaded" class="category-section">
+      <h3 class="category-title">Beaded Jewelry</h3>
+      <div class="product-list">
+        <div class="product">
+          <img src="evervow/download (1).jpeg" alt="Elegant Beaded Necklace Set">
+          <h3>Elegant Beaded Necklace Set</h3>
+          <p>P320.00</p>
+          <button class="add-to-cart" data-name="Elegant Beaded Necklace Set" data-price="320">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="evervow/download.jpeg" alt="Beaded Necklace And Earrings">
+          <h3>Beaded Necklace And Earrings</h3>
+          <p>P500.00</p>
+          <button class="add-to-cart" data-name="Beaded Necklace And Earrings" data-price="500">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="evervow/images (3).jpeg" alt="Forest Green Necklace Set">
+          <h3>Forest Green Necklace Set</h3>
+          <p>P350.00</p>
+          <button class="add-to-cart" data-name="Forest Green Necklace Set" data-price="350">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Emerald/Crystal -->
+    <div id="emerald" class="category-section">
+      <h3 class="category-title">Emerald & Crystal</h3>
+      <div class="product-list">
+        <div class="product">
+          <img src="evervow/images (7).jpeg" alt="Gilded Seafoam">
+          <h3>Gilded Seafoam Crystal Set</h3>
+          <p>P300.00</p>
+          <button class="add-to-cart" data-name="Gilded Seafoam Crystal Set" data-price="300">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Gold Collection -->
+    <div id="gold" class="category-section">
+      <h3 class="category-title">Gold Collection</h3>
+      <div class="product-list">
+        <div class="product">
+          <img src="evervow/imagedownload.jpeg" alt="Elegant Golden Necklace Set">
+          <h3>Elegant Golden Necklace Set</h3>
+          <p>P1250.00</p>
+          <button class="add-to-cart" data-name="Elegant Golden Necklace Set" data-price="1250">Add to Cart</button>
+        </div>
+        <div class="product">
+          <img src="evervow/images (1).jpeg" alt="Golden Necklace Set">
+          <h3>Golden Necklace Set</h3>
+          <p>P650.00</p>
+          <button class="add-to-cart" data-name="Golden Necklace Set" data-price="650">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 EverVow Jewels. All rights reserved.</p>
+  </footer>
+
+  <!-- Cart Preview -->
+  <div id="cart-preview">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div id="cart-items">
+      <div id="empty-cart-message" class="text-center py-4">
+        <p>Your cart is currently empty</p>
+        <a href="shop.html" class="btn btn-luxury">Continue Shopping</a>
+      </div>
+    </div>
+    <div id="cart-totals" class="p-3 border-top" style="display: none;">
+      <div class="d-flex justify-content-between">
+        <strong>Total:</strong>
+        <strong id="cart-total-amount">P0.00</strong>
+      </div>
+    </div>
+    <a href="checkout.html" class="view-cart-btn" style="display: none;">Proceed to Checkout</a>
+  </div>
+
+  <script>
+    class CartSystem {
+      static KEY = 'evervow-cart';
+      
+      static init() {
+        if (!localStorage.getItem(this.KEY)) {
+          localStorage.setItem(this.KEY, JSON.stringify([]));
+        }
+        this.updateCartUI();
+      }
+
+      static getItems() {
+        return JSON.parse(localStorage.getItem(this.KEY)) || [];
+      }
+
+      static addItem(name, price, image = '') {
+        const items = this.getItems();
+        items.push({ name, price: parseFloat(price), image });
+        localStorage.setItem(this.KEY, JSON.stringify(items));
+        this.updateCartUI();
+        this.showNotification(`${name} added to cart`);
+      }
+
+      static removeItem(index) {
+        const items = this.getItems();
+        items.splice(index, 1);
+        localStorage.setItem(this.KEY, JSON.stringify(items));
+        this.updateCartUI();
+      }
+
+      static clearCart() {
+        localStorage.setItem(this.KEY, JSON.stringify([]));
+        this.updateCartUI();
+      }
+
+      static updateCartUI() {
+        const items = this.getItems();
+        const total = items.reduce((sum, item) => sum + item.price, 0);
+        
+        // Update cart count
+        document.querySelectorAll('.cart-count').forEach(el => {
+          el.textContent = items.length;
+        });
+        
+        // Update cart preview
+        if (document.getElementById('cart-preview')) {
+          const cartItemsEl = document.getElementById('cart-items');
+          const emptyMessage = document.getElementById('empty-cart-message');
+          const cartTotals = document.getElementById('cart-totals');
+          const checkoutBtn = document.querySelector('.view-cart-btn');
+          
+          if (items.length === 0) {
+            emptyMessage.style.display = 'block';
+            cartTotals.style.display = 'none';
+            checkoutBtn.style.display = 'none';
+          } else {
+            emptyMessage.style.display = 'none';
+            cartTotals.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+            
+            cartItemsEl.innerHTML = items.map((item, index) => `
+              <div class="cart-item">
+                <img src="${item.image || 'placeholder.jpg'}" alt="${item.name}">
+                <div class="flex-grow-1">
+                  <h6 class="mb-0">${item.name}</h6>
+                  <small>P${item.price.toFixed(2)}</small>
+                </div>
+                <button class="remove-item" data-index="${index}">
+                  &times;
+                </button>
+              </div>
+            `).join('');
+            
+            document.getElementById('cart-total-amount').textContent = `P${total.toFixed(2)}`;
+          }
+        }
+      }
+
+      static showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.innerHTML = `
+          <span>✓ ${message}</span>
+          <a href="#" onclick="document.getElementById('cart-preview').classList.add('open'); return false;">
+            View Cart
+          </a>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      CartSystem.init();
+      
+      // Add to cart buttons
+      document.querySelectorAll('.add-to-cart').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          const productCard = btn.closest('.product');
+          const imgSrc = productCard.querySelector('img').src;
+          CartSystem.addItem(
+            btn.dataset.name, 
+            btn.dataset.price,
+            imgSrc
+          );
+        });
+      });
+      
+      // Remove item buttons
+      document.getElementById('cart-items')?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-item')) {
+          CartSystem.removeItem(parseInt(e.target.dataset.index));
+        }
+      });
+      
+      // Toggle cart preview
+      document.getElementById('cart-icon')?.addEventListener('click', () => {
+        document.getElementById('cart-preview').classList.toggle('open');
+      });
+      
+      // Close cart button
+      document.querySelector('.close-cart')?.addEventListener('click', () => {
+        document.getElementById('cart-preview').classList.remove('open');
+      });
+      
+      // Category switching functionality
+      const tabs = document.querySelectorAll('.category-tab');
+      const sections = document.querySelectorAll('.category-section');
+      
+      tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          tabs.forEach(t => t.classList.remove('active'));
+          sections.forEach(s => s.classList.remove('active'));
+          
+          this.classList.add('active');
+          const categoryId = this.getAttribute('data-category');
+          document.getElementById(categoryId).classList.add('active');
+        });
+      });
+      
+      // Populate "All Products" section with all products
+      const allProductsSection = document.querySelector('#all .product-list');
+      document.querySelectorAll('.category-section:not(#all) .product').forEach(product => {
+        allProductsSection.appendChild(product.cloneNode(true));
+      });
+    });
+  </script>
+</body>
+</html>

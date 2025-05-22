@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart - EverVow Jewels</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Cart-specific styles */
+    #cart-section {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .remove-item {
+      background: #ff4444;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #cart-total {
+      font-weight: bold;
+      font-size: 1.2em;
+      text-align: right;
+      margin: 20px 0;
+    }
+    #clear-cart {
+      background: #333;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    /* Add cart preview styles from shop.html */
+    #cart-preview {
+      position: fixed;
+      top: 0;
+      right: -350px;
+      width: 350px;
+      height: 100vh;
+      background: white;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+      z-index: 1000;
+      transition: right 0.3s ease;
+    }
+    #cart-preview.open {
+      right: 0;
+    }
+    .cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    .close-cart {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+    .view-cart-btn {
+      display: block;
+      background: #b8860b;
+      color: white;
+      text-align: center;
+      padding: 12px;
+      margin: 15px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .cart-item {
+      display: flex;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid #eee;
+    }
+    .cart-item img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-right: 15px;
+      border-radius: 4px;
+    }
+    .remove-item {
+      background: none;
+      border: none;
+      color: #dc3545;
+      cursor: pointer;
+      margin-left: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Same header as index.html -->
+  <header class="luxury-header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <span class="diamond-icon">💎</span>
+          <h1>EverVow <span>Jewels</span></h1>
+        </div>
+        <div class="header-actions">
+          <nav class="main-nav">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Collections</a></li>
+            </ul>
+          </nav>
+          <div class="cart-icon" id="cart-icon">
+            <span class="bag-icon">🛍️</span>
+            <span class="cart-count">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="cart-section">
+      <h2>Your Shopping Cart</h2>
+      <ul id="cart-items"></ul>
+      <p id="cart-total">Total: P0.00</p>
+      <button id="clear-cart" type="button">Clear Cart</button>
+    </section>
+  </main>
+
+  <!-- Add the cart preview from shop.html -->
+  <div id="cart-preview">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart">&times;</button>
+    </div>
+    <div id="cart-items-preview">
+      <div id="empty-cart-message" class="text-center py-4">
+        <p>Your cart is currently empty</p>
+        <a href="shop.html" class="btn btn-luxury">Continue Shopping</a>
+      </div>
+    </div>
+    <div id="cart-totals" class="p-3 border-top" style="display: none;">
+      <div class="d-flex justify-content-between">
+        <strong>Total:</strong>
+        <strong id="cart-total-amount">P0.00</strong>
+      </div>
+    </div>
+    <a href="checkout.html" class="view-cart-btn" style="display: none;">Proceed to Checkout</a>
+  </div>
+
+  <script>
+    class CartSystem {
+      static KEY = 'evervow-cart';
+      
+      static init() {
+        if (!localStorage.getItem(this.KEY)) {
+          localStorage.setItem(this.KEY, JSON.stringify([]));
+        }
+        this.updateCartUI();
+        this.updateCartPage();
+      }
+
+      static getItems() {
+        return JSON.parse(localStorage.getItem(this.KEY)) || [];
+      }
+
+      static addItem(name, price, image = '') {
+        const items = this.getItems();
+        items.push({ name, price: parseFloat(price), image });
+        localStorage.setItem(this.KEY, JSON.stringify(items));
+        this.updateCartUI();
+        this.updateCartPage();
+        this.showNotification(`${name} added to cart`);
+      }
+
+      static removeItem(index) {
+        const items = this.getItems();
+        items.splice(index, 1);
+        localStorage.setItem(this.KEY, JSON.stringify(items));
+        this.updateCartUI();
+        this.updateCartPage();
+      }
+
+      static clearCart() {
+        localStorage.setItem(this.KEY, JSON.stringify([]));
+        this.updateCartUI();
+        this.updateCartPage();
+      }
+
+      static updateCartUI() {
+        const items = this.getItems();
+        const total = items.reduce((sum, item) => sum + item.price, 0);
+        
+        // Update cart count
+        document.querySelectorAll('.cart-count').forEach(el => {
+          el.textContent = items.length;
+        });
+        
+        // Update cart preview
+        if (document.getElementById('cart-preview')) {
+          const cartItemsEl = document.getElementById('cart-items-preview');
+          const emptyMessage = document.getElementById('empty-cart-message');
+          const cartTotals = document.getElementById('cart-totals');
+          const checkoutBtn = document.querySelector('.view-cart-btn');
+          
+          if (items.length === 0) {
+            emptyMessage.style.display = 'block';
+            cartTotals.style.display = 'none';
+            checkoutBtn.style.display = 'none';
+          } else {
+            emptyMessage.style.display = 'none';
+            cartTotals.style.display = 'block';
+            checkoutBtn.style.display = 'block';
+            
+            cartItemsEl.innerHTML = items.map((item, index) => `
+              <div class="cart-item">
+                <img src="${item.image || 'placeholder.jpg'}" alt="${item.name}">
+                <div class="flex-grow-1">
+                  <h6 class="mb-0">${item.name}</h6>
+                  <small>P${item.price.toFixed(2)}</small>
+                </div>
+                <button class="remove-item" data-index="${index}">
+                  &times;
+                </button>
+              </div>
+            `).join('');
+            
+            document.getElementById('cart-total-amount').textContent = `P${total.toFixed(2)}`;
+          }
+        }
+      }
+
+      static updateCartPage() {
+        const items = this.getItems();
+        const total = items.reduce((sum, item) => sum + item.price, 0);
+        const cartItemsEl = document.getElementById('cart-items');
+        const cartTotalEl = document.getElementById('cart-total');
+        
+        if (items.length === 0) {
+          cartItemsEl.innerHTML = '<li>Your cart is empty</li>';
+          cartTotalEl.textContent = `Total: P0.00`;
+        } else {
+          cartItemsEl.innerHTML = items.map((item, index) => `
+            <li class="cart-item">
+              <span>${item.name}</span>
+              <span>P${item.price.toFixed(2)}</span>
+              <button class="remove-item" data-index="${index}">Remove</button>
+            </li>
+          `).join('');
+          cartTotalEl.textContent = `Total: P${total.toFixed(2)}`;
+        }
+      }
+
+      static showNotification(message) {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.innerHTML = `
+          <span>✓ ${message}</span>
+          <a href="cart.html">View Cart</a>
+        `;
+        document.body.appendChild(notification);
+        setTimeout(() => notification.remove(), 3000);
+      }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      CartSystem.init();
+      
+      // Toggle cart preview
+      document.getElementById('cart-icon')?.addEventListener('click', () => {
+        document.getElementById('cart-preview').classList.toggle('open');
+      });
+      
+      // Close cart button
+      document.querySelector('.close-cart')?.addEventListener('click', () => {
+        document.getElementById('cart-preview').classList.remove('open');
+      });
+      
+      // Clear cart button
+      document.getElementById('clear-cart')?.addEventListener('click', () => {
+        CartSystem.clearCart();
+      });
+      
+      // Remove item buttons
+      document.getElementById('cart-items')?.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-item')) {
+          CartSystem.removeItem(parseInt(e.target.dataset.index));
+        }
+      });
+    });
+  </script>
+</body>
+</html>
