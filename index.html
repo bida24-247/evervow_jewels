@@ -1,300 +1,322 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EverVow Jewels | Timeless Diamond Jewelry</title>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    /* Base Styles */
-    body {
-      font-family: 'Montserrat', sans-serif;
-      color: #333;
-      line-height: 1.6;
-      margin: 0;
-      padding: 0;
-    }
-    
-    h1, h2, h3, h4 {
-      font-family: 'Playfair Display', serif;
-    }
-    
-    /* Luxury Header */
-    .luxury-header {
-      background: rgba(255,255,255,0.9);
-      padding: 20px 0;
-      position: fixed;
-      width: 100%;
-      z-index: 1000;
-      box-shadow: 0 2px 15px rgba(0,0,0,0.1);
-    }
-    
-    .logo h1 {
-      font-size: 2.2rem;
-      color: #b8860b;
-      margin: 0;
-    }
-    
-    .logo span {
-      color: #2a2a2a;
-    }
-    
-    /* Hero Carousel */
-    .hero-carousel {
-      margin-top: 80px;
-    }
-    
-    .carousel-item img {
-      height: 80vh;
-      object-fit: cover;
-    }
-    
-    .carousel-caption {
-      bottom: 30%;
-      background: rgba(0,0,0,0.5);
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    /* Featured Collections */
-    .featured-collections {
-      padding: 60px 0;
-    }
-
-    .featured-collections .collection-card {
-      aspect-ratio: 1/1;
-      height: 400px;
-      background: #f8f5f2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.3s ease;
-    }
-
-    .featured-collections .collection-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-
-    .featured-collections .collection-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-
-    .collection-info {
-      padding: 20px;
-      text-align: center;
-    }
-
-    /* Quality Promise */
-    .quality-promise {
-      padding: 60px 0;
-      background: #f9f9f9;
-    }
-
-    /* Footer */
-    .luxury-footer {
-      background: #2a2a2a;
-      color: white;
-      padding: 40px 0 20px;
-    }
-
-    .luxury-footer a {
-      color: #b8860b;
-      text-decoration: none;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding-top: 20px;
-      margin-top: 20px;
-    }
-
-    /* Responsive Adjustments */
-    @media (max-width: 768px) {
-      .carousel-item img {
-        height: 60vh;
-      }
-      
-      .carousel-caption {
-        bottom: 20%;
-      }
-      
-      .featured-collections .collection-card {
-        height: 300px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverVow Jewels - Timeless Elegance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .hero-section {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('evervow/hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 </head>
-<body>
-  <!-- Luxurious Header -->
-  <header class="luxury-header">
-    <div class="container">
-      <div class="header-content">
-        <div class="logo">
-          <span class="diamond-icon">💎</span>
-          <h1>EverVow <span>Jewels</span></h1>
-        </div>
-        <div class="header-actions">
-          <nav class="main-nav">
-            <ul>
-              <li><a href="index.html">Home</a></li>
-              <li><a href="shop.html">Collections</a></li>
-              <li><a href="about.html">Heritage</a></li>
-              <li><a href="contact.html">Contact</a></li>
-            </ul>
-          </nav>
-          <div class="cart-icon" id="cart-toggle">
-  <span class="bag-icon">🛍️</span>
-  <span class="cart-count">0</span>
-</div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Carousel -->
-  <section class="hero-carousel">
-    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="evervow/sabrianna-9_35SjwzpnU-unsplash.jpg" class="d-block w-100" alt="Diamond Collection">
-          <div class="carousel-caption">
-            <h2>The Eternal Collection</h2>
-            <p>Handcrafted diamond Rings and necklaces</p>
-            <a href="shop.html" class="btn btn-luxury">Explore</a>
-          </div>
-        </div>
-        <div class="carousel-item">
-          <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a" class="d-block w-100" alt="Wedding Rings">
-          <div class="carousel-caption">
-            <h2>Bespoke Bridal Jewelry</h2>
-            <p>Custom designs for your special day</p>
-            <a href="shop.html" class="btn btn-luxury">Discover</a>
-          </div>
-        </div>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      </button>
-    </div>
-  </section>
-
-  <!-- Featured Collections -->
-  <section class="featured-collections">
-    <div class="container">
-      <h2 class="section-title">Our Signature Pieces</h2>
-      <div class="row">
-        <div class="col-md-4">
-          <div class="collection-card">
-            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f" alt="Solitaire Necklace">
-            <div class="collection-info">
-              <h3>Solitaire Series</h3>
-              <a href="shop.html" class="collection-link">View Collection →</a>
+<body class="min-h-screen flex flex-col">
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-xl font-bold text-gray-800">EverVow Jewels</a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-800 hover:text-amber-700">Home</a>
+                    <a href="shop.html" class="text-gray-800 hover:text-amber-700">Shop</a>
+                    <a href="about.html" class="text-gray-800 hover:text-amber-700">About</a>
+                    <a href="testimonials.html" class="text-gray-800 hover:text-amber-700">Testimonials</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-amber-700">Contact</a>
+                </nav>
             </div>
-          </div>
+            <button id="cart-button" class="relative text-gray-700 hover:text-amber-700">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            </button>
         </div>
-        <!-- Add two more collection cards -->
-      </div>
-    </div>
-  </section>
+    </header>
 
-  <!-- Quality Promise -->
-  <section class="quality-promise">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-md-6">
-          <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e" alt="Diamond Certification" class="img-fluid">
+    <!-- Mobile Navigation (hidden on desktop) -->
+    <div class="md:hidden bg-gray-100 py-2 px-4">
+        <div class="flex justify-around">
+            <a href="index.html" class="text-gray-800"><i class="fas fa-home"></i></a>
+            <a href="shop.html" class="text-gray-800"><i class="fas fa-shopping-bag"></i></a>
+            <a href="about.html" class="text-gray-800"><i class="fas fa-info-circle"></i></a>
+            <a href="testimonials.html" class="text-gray-800"><i class="fas fa-star"></i></a>
+            <a href="contact.html" class="text-gray-800"><i class="fas fa-envelope"></i></a>
         </div>
-        <div class="col-md-6">
-          <h2>Uncompromising Quality</h2>
-          <p>Every EverVow piece comes with:</p>
-          <ul class="quality-list">
-            <li>GIA-certified diamonds</li>
-            <li>Responsibly sourced materials</li>
-            <li>Lifetime craftsmanship guarantee</li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="luxury-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <h3>EverVow Jewels</h3>
-          <p>Crafting timeless pieces since 2025</p>
+    <!-- Hero Section -->
+    <section class="hero-section bg-amber-50 text-white py-20 md:py-32">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-6">Timeless Elegance</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Discover our exquisite collection of handcrafted jewelry that tells your unique story.</p>
+            <a href="shop.html" class="bg-amber-600 hover:bg-amber-700 text-white px-8 py-3 rounded-lg text-lg font-medium transition duration-300">
+                Shop Now
+            </a>
         </div>
-        <div class="col-md-4">
-          <h4>Quick Links</h4>
-          <ul>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="about.html">Our Story</a></li>
-            <li><a href="contact.html">Contact</a></li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <h4>Contact</h4>
-          <p>77340009<br>hello@evervow.com</p>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2025 EverVow Jewels. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+    </section>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="script.js"></script>
-  <div id="cart-preview">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button class="close-cart">&times;</button>
-  </div>
-  <div id="cart-items">
-    <div id="empty-cart-message" class="text-center py-4">
-      <p>Your cart is currently empty</p>
-      <a href="shop.html" class="btn btn-luxury">Continue Shopping</a>
+    <!-- Featured Categories -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-playfair font-bold text-center mb-12">Our Collections</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <a href="shop.html?category=diamond" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <img src="evervow/images.jpeg" alt="Diamond Collection" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">Diamond</h3>
+                    </div>
+                </a>
+                <a href="shop.html?category=gold" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (5).jpeg" alt="Gold Collection" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">Gold</h3>
+                    </div>
+                </a>
+                <a href="shop.html?category=emerald" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (7).jpeg" alt="Emerald Collection" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">Emerald</h3>
+                    </div>
+                </a>
+                <a href="shop.html?category=beaded" class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (4).jpeg" alt="Beaded Collection" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-105">
+                    <div class="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
+                        <h3 class="text-2xl font-bold text-white">Beaded</h3>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-playfair font-bold text-center mb-12">Featured Jewelry</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Featured Product 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="evervow/evercollection.jpg" alt="Shy High Earrings" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">shy high</h3>
+                        <p class="text-gray-600 text-sm mb-2">blue crystal diamond earring</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">P17,549.87</span>
+                            <button class="add-to-cart bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded" data-id="1">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (2).jpeg" alt="Infinity Ring Set" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">infinity</h3>
+                        <p class="text-gray-600 text-sm mb-2">ring set</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">P121,499.87</span>
+                            <button class="add-to-cart bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded" data-id="2">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (5).jpeg" alt="Emelda Chain" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">emelda chain</h3>
+                        <p class="text-gray-600 text-sm mb-2">red emerald gold chain</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">P8,099.87</span>
+                            <button class="add-to-cart bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded" data-id="4">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Featured Product 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                    <img src="evervow/images (4).jpeg" alt="Pearly Bangles" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">pearly bangles</h3>
+                        <p class="text-gray-600 text-sm mb-2">golden bracelet with pearl beads</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">P2,024.87</span>
+                            <button class="add-to-cart bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded" data-id="10">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-8">
+                <a href="shop.html" class="inline-block border border-amber-600 text-amber-600 hover:bg-amber-600 hover:text-white px-6 py-2 rounded-lg transition duration-300">
+                    View All Products
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="evervow/sabrianna-9poB8SBFveA-unsplash.jpg" alt="Our Craftsmanship" class="rounded-lg shadow-md w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h2 class="text-3xl font-playfair font-bold mb-6">Our Story</h2>
+                    <p class="text-gray-700 mb-4">
+                        EverVow Jewels was founded in 2023 with a passion for creating timeless pieces that celebrate life's special moments. 
+                        Each piece in our collection is meticulously crafted by skilled artisans who pour their heart into every detail.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        We believe jewelry should be more than just an accessory - it should tell your story, commemorate your journey, 
+                        and become a cherished heirloom for generations to come.
+                    </p>
+                    <a href="about.html" class="inline-block bg-amber-600 hover:bg-amber-700 text-white px-6 py-2 rounded-lg transition duration-300">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-auto">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-playfair font-bold mb-4">EverVow Jewels</h3>
+                    <p class="text-gray-400">Timeless elegance crafted for you since 2023.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white">Shop</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">Our Story</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 EverVow Jewels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-xl transform translate-x-full z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Your Cart</h2>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto" id="cart-items">
+                <div class="text-center py-8">
+                    <p class="text-gray-500">Your cart is empty</p>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 hidden" id="cart-summary">
+                <div class="flex justify-between mb-2">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">P0.00</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span>Shipping:</span>
+                    <span class="text-green-600">Free</span>
+                </div>
+                <div class="flex justify-between mb-4 font-bold">
+                    <span>Total:</span>
+                    <span id="cart-total">P0.00</span>
+                </div>
+                <button class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded mb-2">
+                    Proceed to Checkout
+                </button>
+                <a href="shop.html" class="text-center text-gray-600 hover:text-amber-700 text-sm">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div id="cart-totals" style="display: none;"></div>
-  <a href="checkout.html" class="view-cart-btn" style="display: none;">Proceed to Checkout</a>
-</div>
-<!-- Cart Preview -->
-<div id="cart-preview">
-  <div class="cart-header">
-    <h3>Your Cart</h3>
-    <button class="close-cart">&times;</button>
-  </div>
-  <div id="cart-items">
-    <div id="empty-cart-message" class="text-center py-4">
-      <p>Your cart is currently empty</p>
-      <a href="shop.html" class="btn btn-luxury">Continue Shopping</a>
-    </div>
-  </div>
-  <div id="cart-totals" class="p-3 border-top" style="display: none;">
-    <div class="d-flex justify-content-between">
-      <strong>Total:</strong>
-      <strong id="cart-total-amount">P0.00</strong>
-    </div>
-  </div>
-  <a href="checkout.html" class="view-cart-btn" style="display: none;">Proceed to Checkout</a>
-</div>
-</body>
-</html>
+
+    <script>
+        // Product Data (for cart functionality)
+        const products = [
+            {
+                id: "1",
+                name: "shy high",
+                price: 1299.99 * 13.5,
+                category: "diamond",
+                imageUrl: "evervow/evercollection.jpg",
+                description: "blue crystal diamond earing"
+            },
+            {
+                id: "2",
+                name: "infinity",
+                price: 8999.99 * 13.5,
+                category: "diamond",
+                imageUrl: "evervow/images (2).jpeg",
+                description: "ring set"
+            },
+            {
+                id: "4",
+                name: "emelda chain",
+                price: 599.99 * 13.5,
+                category: "gold",
+                imageUrl: "evervow/images (5).jpeg",
+                description: "red emerald gold chain"
+            },
+            {
+                id: "10",
+                name: "pearly bangles",
+                price: 149.99 * 13.5,
+                category: "beaded",
+                imageUrl: "evervow/images (4).jpeg",
+                description: "golden bracelet with pearl beads"
+            }
+        ];
+
+        // Cart State
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // DOM Elements
+        const cartButton = document.getElementById('cart-button');
+        const closeCart = document.getElementById('close-c
+       
+    
