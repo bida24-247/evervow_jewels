@@ -1,489 +1,441 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shop - EverVow Jewels</title>
-  <link rel="stylesheet" href="styles.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <script defer src="script.js"></script>
-  <style>
-    /* Cart Notification */
-    .cart-notification {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #28a745;
-      color: white;
-      padding: 15px 20px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      animation: fadeIn 0.3s ease-out;
-      z-index: 1000;
-    }
-    
-    .cart-notification .view-cart {
-      color: white;
-      text-decoration: underline;
-      font-weight: bold;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    .fade-out {
-      animation: fadeOut 0.3s ease-in forwards;
-    }
-    
-    @keyframes fadeOut {
-      from { opacity: 1; transform: translateY(0); }
-      to { opacity: 0; transform: translateY(20px); }
-    }
-    
-    /* Category styles */
-    .category-tabs {
-      display: flex;
-      justify-content: center;
-      margin: 20px 0 30px;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    
-    .category-tab {
-      padding: 10px 20px;
-      background: #f8f8f8;
-      border: 1px solid #ddd;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .category-tab:hover, .category-tab.active {
-      background: #333;
-      color: white;
-      border-color: #333;
-    }
-    
-    .category-section {
-      display: none;
-    }
-    
-    .category-section.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    .category-title {
-      text-align: center;
-      margin: 40px 0 20px;
-      font-size: 2rem;
-      color: #333;
-      border-bottom: 2px solid #ddd;
-      padding-bottom: 10px;
-    }
-    
-    .product-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    
-    .product {
-      border: 1px solid #ddd;
-      padding: 15px;
-      border-radius: 8px;
-      text-align: center;
-    }
-    
-    .product img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 4px;
-    }
-    
-    .add-to-cart {
-      background: #333;
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-
-    /* Cart Preview Styles */
-    #cart-preview {
-      position: fixed;
-      top: 0;
-      right: -350px;
-      width: 350px;
-      height: 100vh;
-      background: white;
-      box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-      z-index: 1000;
-      transition: right 0.3s ease;
-    }
-
-    #cart-preview.open {
-      right: 0;
-    }
-
-    .cart-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px;
-      border-bottom: 1px solid #eee;
-    }
-
-    .close-cart {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
-
-    #cart-items {
-      padding: 15px;
-      max-height: 60vh;
-      overflow-y: auto;
-    }
-
-    .view-cart-btn {
-      display: block;
-      background: #b8860b;
-      color: white;
-      text-align: center;
-      padding: 12px;
-      margin: 15px;
-      border-radius: 4px;
-      text-decoration: none;
-    }
-
-    .cart-item {
-      display: flex;
-      align-items: center;
-      padding: 10px 0;
-      border-bottom: 1px solid #eee;
-    }
-
-    .cart-item img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      margin-right: 15px;
-      border-radius: 4px;
-    }
-
-    .remove-item {
-      background: none;
-      border: none;
-      color: #dc3545;
-      cursor: pointer;
-      margin-left: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EverVow Jewels - Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
+        .font-playfair {
+            font-family: 'Playfair Display', serif;
+        }
+        .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .cart-sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
 </head>
-<body>
-  <header>
-    <div class="header-top">
-      <h1>Shop Our Collection</h1>
-      <div id="cart-icon">
-        🛒 <span id="cart-count" class="cart-count">0</span>
-      </div>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html" class="btn btn-evervow">Home</a></li>
-        <li><a href="shop.html" class="btn btn-evervow">Shop Now</a></li>
-        <li><a href="testimonials.html" class="btn btn-evervow">Testimonials</a></li>
-        <li><a href="about.html" class="btn btn-evervow">About Us</a></li>
-        <li><a href="contact.html" class="btn btn-evervow">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section id="shop">
-    <h2>Our Products</h2>
-    
-    <!-- Category Tabs -->
-    <div class="category-tabs">
-      <div class="category-tab active" data-category="all">All Products</div>
-      <div class="category-tab" data-category="diamond">Diamond</div>
-      <div class="category-tab" data-category="beaded">Beaded</div>
-      <div class="category-tab" data-category="emerald">Emerald/Crystal</div>
-      <div class="category-tab" data-category="gold">Gold</div>
-    </div>
-    
-    <!-- All Products -->
-    <div id="all" class="category-section active">
-      <h3 class="category-title">All Jewelry</h3>
-      <div class="product-list">
-        <!-- Products will be shown here when All is selected -->
-      </div>
-    </div>
-    
-    <!-- Diamond Collection -->
-    <div id="diamond" class="category-section">
-      <h3 class="category-title">Diamond Collection</h3>
-      <div class="product-list">
-        <div class="product">
-          <img src="evervow/evercollection.jpg" alt="Diamond Earrings With Blue Emeralds">
-          <h3>Diamond Earrings With Blue Emeralds</h3>
-          <p>P2500.00</p>
-          <button class="add-to-cart" data-name="Diamond Earrings With Blue Emeralds" data-price="2500">Add to Cart</button>
+<body class="min-h-screen flex flex-col">
+    <!-- Header with Navigation -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-xl font-bold text-gray-800">EverVow Jewels</a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-800 hover:text-amber-700">Home</a>
+                    <a href="shop.html" class="text-gray-800 hover:text-amber-700">Shop</a>
+                    <a href="about.html" class="text-gray-800 hover:text-amber-700">About</a>
+                    <a href="testimonials.html" class="text-gray-800 hover:text-amber-700">Testimonials</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-amber-700">Contact</a>
+                </nav>
+            </div>
+            <button id="cart-button" class="relative text-gray-700 hover:text-amber-700">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            </button>
         </div>
-        <div class="product">
-          <img src="evervow/images (2).jpeg" alt="Diamond Ring Set">
-          <h3>Diamond Ring Set</h3>
-          <p>P25000.00</p>
-          <button class="add-to-cart" data-name="Diamond Ring Set" data-price="25000">Add to Cart</button>
+    </header>
+
+    <!-- Mobile Navigation (hidden on desktop) -->
+    <div class="md:hidden bg-gray-100 py-2 px-4">
+        <div class="flex justify-around">
+            <a href="index.html" class="text-gray-800"><i class="fas fa-home"></i></a>
+            <a href="shop.html" class="text-gray-800"><i class="fas fa-shopping-bag"></i></a>
+            <a href="about.html" class="text-gray-800"><i class="fas fa-info-circle"></i></a>
+            <a href="testimonials.html" class="text-gray-800"><i class="fas fa-star"></i></a>
+            <a href="contact.html" class="text-gray-800"><i class="fas fa-envelope"></i></a>
         </div>
-        <div class="product">
-          <img src="evervow/sabrianna-q_sPpAv0MXE-unsplash.jpg" alt="Diamond Necklace">
-          <h3>Diamond Necklace</h3>
-          <p>P20000.00</p>
-          <button class="add-to-cart" data-name="Diamond Necklace" data-price="20000">Add to Cart</button>
-        </div>
-      </div>
     </div>
-    
-    <!-- Beaded Jewelry -->
-    <div id="beaded" class="category-section">
-      <h3 class="category-title">Beaded Jewelry</h3>
-      <div class="product-list">
-        <div class="product">
-          <img src="evervow/download (1).jpeg" alt="Elegant Beaded Necklace Set">
-          <h3>Elegant Beaded Necklace Set</h3>
-          <p>P320.00</p>
-          <button class="add-to-cart" data-name="Elegant Beaded Necklace Set" data-price="320">Add to Cart</button>
+
+    <!-- Category Filters -->
+    <div class="bg-gray-50 py-4">
+        <div class="container mx-auto px-4 flex flex-wrap gap-2">
+            <button data-category="all" class="category-btn px-4 py-2 rounded-full bg-amber-600 text-white">All</button>
+            <button data-category="diamond" class="category-btn px-4 py-2 rounded-full bg-white text-gray-800 hover:bg-gray-100">Diamond</button>
+            <button data-category="gold" class="category-btn px-4 py-2 rounded-full bg-white text-gray-800 hover:bg-gray-100">Gold</button>
+            <button data-category="emerald" class="category-btn px-4 py-2 rounded-full bg-white text-gray-800 hover:bg-gray-100">Emerald</button>
+            <button data-category="beaded" class="category-btn px-4 py-2 rounded-full bg-white text-gray-800 hover:bg-gray-100">Beaded</button>
         </div>
-        <div class="product">
-          <img src="evervow/download.jpeg" alt="Beaded Necklace And Earrings">
-          <h3>Beaded Necklace And Earrings</h3>
-          <p>P500.00</p>
-          <button class="add-to-cart" data-name="Beaded Necklace And Earrings" data-price="500">Add to Cart</button>
-        </div>
-        <div class="product">
-          <img src="evervow/images (3).jpeg" alt="Forest Green Necklace Set">
-          <h3>Forest Green Necklace Set</h3>
-          <p>P350.00</p>
-          <button class="add-to-cart" data-name="Forest Green Necklace Set" data-price="350">Add to Cart</button>
-        </div>
-      </div>
     </div>
-    
-    <!-- Emerald/Crystal -->
-    <div id="emerald" class="category-section">
-      <h3 class="category-title">Emerald & Crystal</h3>
-      <div class="product-list">
-        <div class="product">
-          <img src="evervow/images (7).jpeg" alt="Gilded Seafoam">
-          <h3>Gilded Seafoam Crystal Set</h3>
-          <p>P300.00</p>
-          <button class="add-to-cart" data-name="Gilded Seafoam Crystal Set" data-price="300">Add to Cart</button>
-        </div>
-      </div>
+
+    <!-- Product Grid -->
+    <div class="container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="products-grid">
+        <!-- Products will be inserted here by JavaScript -->
     </div>
-    
-    <!-- Gold Collection -->
-    <div id="gold" class="category-section">
-      <h3 class="category-title">Gold Collection</h3>
-      <div class="product-list">
-        <div class="product">
-          <img src="evervow/imagedownload.jpeg" alt="Elegant Golden Necklace Set">
-          <h3>Elegant Golden Necklace Set</h3>
-          <p>P1250.00</p>
-          <button class="add-to-cart" data-name="Elegant Golden Necklace Set" data-price="1250">Add to Cart</button>
-        </div>
-        <div class="product">
-          <img src="evervow/images (1).jpeg" alt="Golden Necklace Set">
-          <h3>Golden Necklace Set</h3>
-          <p>P650.00</p>
-          <button class="add-to-cart" data-name="Golden Necklace Set" data-price="650">Add to Cart</button>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <footer>
-    <p>&copy; 2025 EverVow Jewels. All rights reserved.</p>
-  </footer>
-
-  <!-- Cart Preview -->
-  <div id="cart-preview">
-    <div class="cart-header">
-      <h3>Your Cart</h3>
-      <button class="close-cart">&times;</button>
-    </div>
-    <div id="cart-items">
-      <div id="empty-cart-message" class="text-center py-4">
-        <p>Your cart is currently empty</p>
-        <a href="shop.html" class="btn btn-luxury">Continue Shopping</a>
-      </div>
-    </div>
-    <div id="cart-totals" class="p-3 border-top" style="display: none;">
-      <div class="d-flex justify-content-between">
-        <strong>Total:</strong>
-        <strong id="cart-total-amount">P0.00</strong>
-      </div>
-    </div>
-    <a href="checkout.html" class="view-cart-btn" style="display: none;">Proceed to Checkout</a>
-  </div>
-
-  <script>
-    class CartSystem {
-      static KEY = 'evervow-cart';
-      
-      static init() {
-        if (!localStorage.getItem(this.KEY)) {
-          localStorage.setItem(this.KEY, JSON.stringify([]));
-        }
-        this.updateCartUI();
-      }
-
-      static getItems() {
-        return JSON.parse(localStorage.getItem(this.KEY)) || [];
-      }
-
-      static addItem(name, price, image = '') {
-        const items = this.getItems();
-        items.push({ name, price: parseFloat(price), image });
-        localStorage.setItem(this.KEY, JSON.stringify(items));
-        this.updateCartUI();
-        this.showNotification(`${name} added to cart`);
-      }
-
-      static removeItem(index) {
-        const items = this.getItems();
-        items.splice(index, 1);
-        localStorage.setItem(this.KEY, JSON.stringify(items));
-        this.updateCartUI();
-      }
-
-      static clearCart() {
-        localStorage.setItem(this.KEY, JSON.stringify([]));
-        this.updateCartUI();
-      }
-
-      static updateCartUI() {
-        const items = this.getItems();
-        const total = items.reduce((sum, item) => sum + item.price, 0);
-        
-        // Update cart count
-        document.querySelectorAll('.cart-count').forEach(el => {
-          el.textContent = items.length;
-        });
-        
-        // Update cart preview
-        if (document.getElementById('cart-preview')) {
-          const cartItemsEl = document.getElementById('cart-items');
-          const emptyMessage = document.getElementById('empty-cart-message');
-          const cartTotals = document.getElementById('cart-totals');
-          const checkoutBtn = document.querySelector('.view-cart-btn');
-          
-          if (items.length === 0) {
-            emptyMessage.style.display = 'block';
-            cartTotals.style.display = 'none';
-            checkoutBtn.style.display = 'none';
-          } else {
-            emptyMessage.style.display = 'none';
-            cartTotals.style.display = 'block';
-            checkoutBtn.style.display = 'block';
-            
-            cartItemsEl.innerHTML = items.map((item, index) => `
-              <div class="cart-item">
-                <img src="${item.image || 'placeholder.jpg'}" alt="${item.name}">
-                <div class="flex-grow-1">
-                  <h6 class="mb-0">${item.name}</h6>
-                  <small>P${item.price.toFixed(2)}</small>
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-auto">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-playfair font-bold mb-4">EverVow Jewels</h3>
+                    <p class="text-gray-400">Timeless elegance crafted for you since 2023.</p>
                 </div>
-                <button class="remove-item" data-index="${index}">
-                  &times;
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white">Shop</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">Our Story</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Connect With Us</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2023 EverVow Jewels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-xl transform translate-x-full z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">Your Cart</h2>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto" id="cart-items">
+                <div class="text-center py-8">
+                    <p class="text-gray-500">Your cart is empty</p>
+                </div>
+            </div>
+
+            <div class="border-t pt-4 hidden" id="cart-summary">
+                <div class="flex justify-between mb-2">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">P0.00</span>
+                </div>
+                <div class="flex justify-between mb-2">
+                    <span>Shipping:</span>
+                    <span class="text-green-600">Free</span>
+                </div>
+                <div class="flex justify-between mb-4 font-bold">
+                    <span>Total:</span>
+                    <span id="cart-total">P0.00</span>
+                </div>
+                <button class="w-full bg-amber-600 hover:bg-amber-700 text-white py-2 rounded mb-2">
+                    Proceed to Checkout
                 </button>
-              </div>
-            `).join('');
+                <a href="shop.html" class="text-center text-gray-600 hover:text-amber-700 text-sm">
+                    Continue Shopping
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Conversion rate (1 USD to BWP)
+        const USD_TO_BWP = 13.5;
+
+        // Product Data with all requested items
+        const products = [
+            // Diamond Collection
+            {
+                id: "1",
+                name: "shy high",
+                price: 1299.99 * USD_TO_BWP,
+                category: "diamond",
+                imageUrl: "evervow/evercollection.jpg",
+                description: "blue crystal diamond earing"
+            },
+            {
+                id: "2",
+                name: "infinity",
+                price: 8999.99 * USD_TO_BWP,
+                category: "diamond",
+                imageUrl: "evervow/images (2).jpeg",
+                description: "ring set"
+            },
+            {
+                id: "3",
+                name: "true love",
+                price: 2499.99 * USD_TO_BWP,
+                category: "diamond",
+                imageUrl: "evervow/images.jpeg",
+                description: "20k wedding ring"
+            },
             
-            document.getElementById('cart-total-amount').textContent = `P${total.toFixed(2)}`;
-          }
-        }
-      }
+            // Gold Collection
+            {
+                id: "4",
+                name: "emelda chain",
+                price: 599.99 * USD_TO_BWP,
+                category: "gold",
+                imageUrl: "evervow/images (5).jpeg",
+                description: "red emerald gold chain"
+            },
+            {
+                id: "5",
+                name: "Gold necklace set with earings",
+                price: 349.99 * USD_TO_BWP,
+                category: "gold",
+                imageUrl: "evervow/Sakina_Z_IMG12157_FIV.jpg",
+                description: "14k indian set"
+            },
+            {
+                id: "6",
+                name: "be mine",
+                price: 799.99 * USD_TO_BWP,
+                category: "gold",
+                imageUrl: "evervow/samar-ahmad--nKCbZlOHek-unsplash.jpg",
+                description: "golden promise ring"
+            },
+            
+            // Emerald Collection
+            {
+                id: "7",
+                name: "Emerald Crystal necklace",
+                price: 399.99 * USD_TO_BWP,
+                category: "emerald",
+                imageUrl: "evervow/images (7).jpeg",
+                description: "Handcrafted emerald and crystal earing"
+            },
+            
+            
+               
+            
+            // Beaded Collection
+            {
+                id: "10",
+                name: "pearly bangles",
+                price: 149.99 * USD_TO_BWP,
+                category: "beaded",
+                imageUrl: "evervow/images (4).jpeg",
+                description: "golden bracelet with pearl beads"
+            },
+            {
+                id: "11",
+                name: "Beaded Wrap Bracelet",
+                price: 129.99 * USD_TO_BWP,
+                category: "beaded",
+                imageUrl: "evervow/images (12).jpeg",
+                description: "Adjustable beaded bracelet with semi-precious stones"
+            },
+            {
+                id: "12",
+                name: "Beaded Choker Necklace",
+                price: 179.99 * USD_TO_BWP,
+                category: "beaded",
+                imageUrl: "evervow/images (14).jpeg",
+                description: "Hand-strung beaded choker with gold-plated clasp"
+            }
+        ];
 
-      static showNotification(message) {
-        const notification = document.createElement('div');
-        notification.className = 'cart-notification';
-        notification.innerHTML = `
-          <span>✓ ${message}</span>
-          <a href="#" onclick="document.getElementById('cart-preview').classList.add('open'); return false;">
-            View Cart
-          </a>
-        `;
-        document.body.appendChild(notification);
-        setTimeout(() => notification.remove(), 3000);
-      }
-    }
+        // Cart State
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    document.addEventListener('DOMContentLoaded', function() {
-      CartSystem.init();
-      
-      // Add to cart buttons
-      document.querySelectorAll('.add-to-cart').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          e.preventDefault();
-          const productCard = btn.closest('.product');
-          const imgSrc = productCard.querySelector('img').src;
-          CartSystem.addItem(
-            btn.dataset.name, 
-            btn.dataset.price,
-            imgSrc
-          );
-        });
-      });
-      
-      // Remove item buttons
-      document.getElementById('cart-items')?.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-item')) {
-          CartSystem.removeItem(parseInt(e.target.dataset.index));
+        // DOM Elements
+        const productsGrid = document.getElementById('products-grid');
+        const cartButton = document.getElementById('cart-button');
+        const closeCart = document.getElementById('close-cart');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartItems = document.getElementById('cart-items');
+        const cartSummary = document.getElementById('cart-summary');
+        const cartCount = document.getElementById('cart-count');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const categoryButtons = document.querySelectorAll('.category-btn');
+
+        // Format price in Pula
+        function formatPrice(price) {
+            return 'P' + price.toFixed(2);
         }
-      });
-      
-      // Toggle cart preview
-      document.getElementById('cart-icon')?.addEventListener('click', () => {
-        document.getElementById('cart-preview').classList.toggle('open');
-      });
-      
-      // Close cart button
-      document.querySelector('.close-cart')?.addEventListener('click', () => {
-        document.getElementById('cart-preview').classList.remove('open');
-      });
-      
-      // Category switching functionality
-      const tabs = document.querySelectorAll('.category-tab');
-      const sections = document.querySelectorAll('.category-section');
-      
-      tabs.forEach(tab => {
-        tab.addEventListener('click', function() {
-          tabs.forEach(t => t.classList.remove('active'));
-          sections.forEach(s => s.classList.remove('active'));
-          
-          this.classList.add('active');
-          const categoryId = this.getAttribute('data-category');
-          document.getElementById(categoryId).classList.add('active');
+
+        // Render Products
+        function renderProducts(category = 'all') {
+            productsGrid.innerHTML = '';
+            const filteredProducts = category === 'all' 
+                ? products 
+                : products.filter(p => p.category === category);
+            
+            filteredProducts.forEach(product => {
+                const productEl = document.createElement('div');
+                productEl.className = 'bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow';
+                productEl.innerHTML = `
+                    <img src="${product.imageUrl}" alt="${product.name}" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-2 line-clamp-2">${product.description}</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-amber-700">${formatPrice(product.price)}</span>
+                            <button 
+                                data-id="${product.id}"
+                                class="add-to-cart bg-amber-600 hover:bg-amber-700 text-white px-3 py-1 rounded"
+                            >
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productEl);
+            });
+
+            // Add event listeners to new buttons
+            document.querySelectorAll('.add-to-cart').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    addToCart(productId);
+                });
+            });
+        }
+
+        // Add to Cart
+        function addToCart(productId) {
+            const existingItem = cart.find(item => item.id === productId);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ id: productId, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        // Update Cart
+        function updateCart() {
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.classList.toggle('hidden', totalItems === 0);
+            
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="text-center py-8">
+                        <p class="text-gray-500">Your cart is empty</p>
+                    </div>
+                `;
+                cartSummary.classList.add('hidden');
+            } else {
+                cartItems.innerHTML = '';
+                let subtotal = 0;
+                
+                cart.forEach(item => {
+                    const product = products.find(p => p.id === item.id);
+                    if (!product) return;
+                    
+                    subtotal += product.price * item.quantity;
+                    
+                    const cartItem = document.createElement('div');
+                    cartItem.className = 'flex items-center border-b pb-4';
+                    cartItem.innerHTML = `
+                        <img src="${product.imageUrl}" alt="${product.name}" class="w-16 h-16 object-cover rounded">
+                        <div class="ml-4 flex-1">
+                            <h3 class="font-medium">${product.name}</h3>
+                            <div class="flex justify-between mt-2">
+                                <span class="text-amber-700">${formatPrice(product.price)}</span>
+                                <div class="flex items-center">
+                                    <button class="quantity-btn decrease" data-id="${product.id}">-</button>
+                                    <span class="mx-2">${item.quantity}</span>
+                                    <button class="quantity-btn increase" data-id="${product.id}">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="remove-item ml-4 text-red-500 hover:text-red-700" data-id="${product.id}">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    `;
+                    cartItems.appendChild(cartItem);
+                });
+                
+                cartSubtotal.textContent = formatPrice(subtotal);
+                cartTotal.textContent = formatPrice(subtotal);
+                cartSummary.classList.remove('hidden');
+            }
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.quantity-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.getAttribute('data-id');
+                    const isIncrease = e.target.classList.contains('increase');
+                    updateQuantity(productId, isIncrease);
+                });
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const productId = e.target.closest('button').getAttribute('data-id');
+                    removeFromCart(productId);
+                });
+            });
+        }
+
+        // Update Quantity
+        function updateQuantity(productId, isIncrease) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            
+            if (isIncrease) {
+                item.quantity += 1;
+            } else {
+                item.quantity -= 1;
+                if (item.quantity <= 0) {
+                    cart = cart.filter(item => item.id !== productId);
+                }
+            }
+            updateCart();
+        }
+
+        // Remove from Cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCart();
+        }
+
+        // Event Listeners
+        cartButton.addEventListener('click', () => {
+            cartSidebar.classList.remove('translate-x-full');
         });
-      });
-      
-      // Populate "All Products" section with all products
-      const allProductsSection = document.querySelector('#all .product-list');
-      document.querySelectorAll('.category-section:not(#all) .product').forEach(product => {
-        allProductsSection.appendChild(product.cloneNode(true));
-      });
-    });
-  </script>
+
+        closeCart.addEventListener('click', () => {
+            cartSidebar.classList.add('translate-x-full');
+        });
+
+        categoryButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.getAttribute('data-category');
+                categoryButtons.forEach(btn => {
+                    btn.classList.toggle('bg-amber-600', btn === button);
+                    btn.classList.toggle('text-white', btn === button);
+                    btn.classList.toggle('bg-white', btn !== button);
+                    btn.classList.toggle('text-gray-800', btn !== button);
+                });
+                renderProducts(category);
+            });
+        });
+
+        // Initialize
+        renderProducts();
+        updateCart();
+    </script>
 </body>
 </html>
