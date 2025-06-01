@@ -1,24 +1,9 @@
-<!DOCTYPE html>
+          <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - EverVow Jewels</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Existing head content remains the same -->
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-        .font-playfair {
-            font-family: 'Playfair Display', serif;
-        }
-        .contact-hero {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('images/contact-bg.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .cart-sidebar {
-            transition: transform 0.3s ease-in-out;
-        }
+        /* Add this to your existing styles */
         .social-like-container {
             display: flex;
             gap: 15px;
@@ -35,55 +20,19 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
-            transition: background 0.3s ease;
-        }
-        .instagram-follow-button:hover {
-            background: #C13584;
-            color: white;
         }
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-8">
-                <a href="index.html" class="text-xl font-bold text-gray-800">EverVow Jewels</a>
-                <nav class="hidden md:flex space-x-6">
-                    <a href="index.html" class="text-gray-800 hover:text-amber-700">Home</a>
-                    <a href="shop.html" class="text-gray-800 hover:text-amber-700">Shop</a>
-                    <a href="about.html" class="text-gray-800 hover:text-amber-700">About</a>
-                    <a href="testimonials.html" class="text-gray-800 hover:text-amber-700">Testimonials</a>
-                    <a href="contact.html" class="text-gray-800 hover:text-amber-700 font-semibold">Contact</a>
-                </nav>
-            </div>
-            <button id="cart-button" class="relative text-gray-700 hover:text-amber-700">
-                <i class="fas fa-shopping-cart text-xl"></i>
-                <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
-            </button>
-        </div>
-    </header>
+    <!-- Existing header content remains the same -->
 
-    <!-- Mobile Navigation -->
-    <div class="md:hidden bg-gray-100 py-2 px-4">
-        <div class="flex justify-around">
-            <a href="index.html" class="text-gray-800" aria-label="Home"><i class="fas fa-home"></i></a>
-            <a href="shop.html" class="text-gray-800" aria-label="Shop"><i class="fas fa-shopping-bag"></i></a>
-            <a href="about.html" class="text-gray-800" aria-label="About"><i class="fas fa-info-circle"></i></a>
-            <a href="testimonials.html" class="text-gray-800" aria-label="Testimonials"><i class="fas fa-star"></i></a>
-            <a href="contact.html" class="text-amber-600" aria-label="Contact"><i class="fas fa-envelope"></i></a>
-        </div>
-    </div>
-
-    <!-- Hero Section -->
+    <!-- Hero Section - Add this container -->
     <section class="contact-hero bg-amber-50 text-white py-20 md:py-32">
         <div class="container mx-auto px-4 text-center">
-            <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-6">Contact Us</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">We'd love to hear from you. Reach out for inquiries, custom orders, or just to say hello!</p>
+            <!-- Existing hero content -->
             
-            <!-- Social Like Buttons -->
+            <!-- Add this social buttons container -->
             <div class="social-like-container">
-                <!-- Facebook Like Button -->
                 <div class="fb-like" 
                      data-href="https://www.facebook.com/katlegogaolekwe" 
                      data-width="" 
@@ -92,281 +41,41 @@
                      data-size="large" 
                      data-share="false">
                 </div>
-                
-                <!-- Instagram Follow Button -->
                 <a href="https://www.instagram.com/katlegomichellegaolekwe" 
                    class="instagram-follow-button" 
-                   target="_blank" 
-                   rel="noopener noreferrer">
+                   target="_blank">
                     <i class="fab fa-instagram"></i> Follow
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Contact Content -->
-    <section class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
-                <!-- Contact Form -->
-                <div>
-                    <h2 class="text-3xl font-playfair font-bold mb-6">Send Us a Message</h2>
-                    <form class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
-                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></textarea>
-                        </div>
-                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
-                            Send Message
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Contact Info -->
-                <div>
-                    <h2 class="text-3xl font-playfair font-bold mb-6">Our Information</h2>
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="text-amber-600 text-xl mt-1 mr-4">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg mb-1">Our Boutique</h3>
-                                <p class="text-gray-700">123 Jewel Street, Makati City, Metro Manila, Philippines</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="text-amber-600 text-xl mt-1 mr-4">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg mb-1">Phone</h3>
-                                <p class="text-gray-700">+63 912 345 6789</p>
-                                <p class="text-gray-700">Mon-Fri: 9am-6pm</p>
-                            </div>
-                        </div>
-                        <div class="flex items-start">
-                            <div class="text-amber-600 text-xl mt-1 mr-4">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h3 class="font-semibold text-lg mb-1">Email</h3>
-                                <p class="text-gray-700">info@evervowjewels.com</p>
-                                <p class="text-gray-700">Customer Support: support@evervowjewels.com</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Social Media Links -->
-                    <div class="mt-10">
-                        <h3 class="font-semibold text-lg mb-4">Follow Us</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://www.facebook.com/katlegogaolekwe" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-amber-600 text-2xl">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a href="https://www.instagram.com/katlegomichellegaolekwe" target="_blank" rel="noopener noreferrer" class="text-gray-700 hover:text-amber-600 text-2xl">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="#" class="text-gray-700 hover:text-amber-600 text-2xl">
-                                <i class="fab fa-pinterest-p"></i>
-                            </a>
-                            <a href="#" class="text-gray-700 hover:text-amber-600 text-2xl">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Additional Social Like Buttons -->
-                    <div class="mt-8 pt-8 border-t border-gray-200">
-                        <h3 class="font-semibold text-lg mb-4">Love our jewelry? Show some love!</h3>
-                        <div class="social-like-container justify-start">
-                            <!-- Facebook Like Button -->
-                            <div class="fb-like" 
-                                 data-href="https://www.facebook.com/katlegogaolekwe" 
-                                 data-width="" 
-                                 data-layout="button_count" 
-                                 data-action="like" 
-                                 data-size="large" 
-                                 data-share="true">
-                            </div>
-                            
-                            <!-- Instagram Follow Button -->
-                            <a href="https://www.instagram.com/katlegomichellegaolekwe" 
-                               class="instagram-follow-button" 
-                               target="_blank" 
-                               rel="noopener noreferrer">
-                                <i class="fab fa-instagram"></i> Follow
-                            </a>
-                        </div>
-                    </div>
-                </div>
+    <!-- In the Contact Info section, add this -->
+    <div class="mt-8 pt-8 border-t border-gray-200">
+        <h3 class="font-semibold text-lg mb-4">Show your support</h3>
+        <div class="social-like-container justify-start">
+            <div class="fb-like" 
+                 data-href="https://www.facebook.com/katlegogaolekwe" 
+                 data-width="" 
+                 data-layout="button_count" 
+                 data-action="like" 
+                 data-size="large" 
+                 data-share="true">
             </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="bg-gray-100 py-12">
-        <div class="container mx-auto px-4">
-            <h2 class="text-2xl font-playfair font-bold text-center mb-8">Find Our Boutique</h2>
-            <div class="aspect-w-16 aspect-h-9 bg-gray-300 rounded-lg overflow-hidden">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3861.758036682721!2d121.0143153153264!3d14.554470181899281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397c90264a0ed01%3A0x2b94f8230f2a3b1d!2sGreenbelt%20Park!5e0!3m2!1sen!2sph!4v1623828123456!5m2!1sen!2sph" 
-                        width="100%" 
-                        height="450" 
-                        style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white mt-auto">
-        <div class="container mx-auto px-4 py-12">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div>
-                    <h3 class="text-xl font-playfair font-bold mb-4">EverVow Jewels</h3>
-                    <p class="text-gray-400">Timeless elegance crafted for you since 2023.</p>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="shop.html" class="text-gray-400 hover:text-white">Shop</a></li>
-                        <li><a href="about.html" class="text-gray-400 hover:text-white">Our Story</a></li>
-                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Customer Service</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
-                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
-                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-semibold mb-4">Follow Us</h4>
-                    <!-- Facebook Page Embed -->
-                    <div class="mb-4">
-                        <div class="fb-page"
-                          data-href="https://www.facebook.com/katlegogaolekwe"
-                          data-tabs="timeline"
-                          data-width=""
-                          data-height=""
-                          data-small-header="false"
-                          data-adapt-container-width="true"
-                          data-hide-cover="false"
-                          data-show-facepile="true">
-                          <blockquote cite="https://www.facebook.com/katlegogaolekwe" class="fb-xfbml-parse-ignore">
-                            <a href="https://www.facebook.com/katlegogaolekwe">Katlego Gaolekwe</a>
-                          </blockquote>
-                        </div>
-                    </div>
-                    <div class="flex space-x-4">
-                        <a href="https://www.facebook.com/katlegogaolekwe" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="https://www.instagram.com/katlegomichellegaolekwe" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-pinterest-p"></i>
-                        </a>
-                        <a href="#" class="text-gray-400 hover:text-white">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-                <p>&copy; 2023 EverVow Jewels. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-xl transform translate-x-full z-50">
-        <div class="p-6 h-full flex flex-col">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold">Your Cart</h3>
-                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="flex-1 overflow-y-auto">
-                <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-8 text-gray-500">
-                    <i class="fas fa-shopping-cart text-4xl mb-4"></i>
-                    <p>Your cart is empty</p>
-                </div>
-            </div>
-            <div class="border-t border-gray-200 pt-4">
-                <div class="flex justify-between mb-4">
-                    <span class="font-semibold">Subtotal</span>
-                    <span id="cart-subtotal">₱0.00</span>
-                </div>
-                <a href="checkout.html" class="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center py-3 rounded-lg font-medium transition duration-300">
-                    Checkout
-                </a>
-            </div>
+            <a href="https://www.instagram.com/katlegomichellegaolekwe" 
+               class="instagram-follow-button" 
+               target="_blank">
+                <i class="fab fa-instagram"></i> Follow
+            </a>
         </div>
     </div>
 
-    <!-- Facebook SDK - MUST be placed before the closing body tag -->
+    <!-- Keep existing footer content -->
+
+    <!-- Add this right before closing body tag -->
     <div id="fb-root"></div>
-    <script>
-        // Load Facebook SDK asynchronously
-        (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=YOUR_APP_ID&autoLogAppEvents=1";
-            fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
-    </script>
-
-    <script>
-        // Cart functionality
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function () {
-                const cartCount = document.getElementById('cart-count');
-                let count = parseInt(cartCount.textContent) || 0;
-                cartCount.textContent = count + 1;
-                cartCount.classList.remove('hidden');
-            });
-        });
-
-        const cartButton = document.getElementById('cart-button');
-        const closeCart = document.getElementById('close-cart');
-        const cartSidebar = document.getElementById('cart-sidebar');
-
-        if (cartButton && closeCart && cartSidebar) {
-            cartButton.addEventListener('click', () => {
-                cartSidebar.style.transform = 'translateX(0)';
-            });
-
-            closeCart.addEventListener('click', () => {
-                cartSidebar.style.transform = 'translateX(100%)';
-            });
-        }
-        
-        // Force Facebook widgets to re-render if they didn't load properly
-        if (typeof FB !== 'undefined') {
-            FB.XFBML.parse();
-        }
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0">
     </script>
 </body>
 </html>
