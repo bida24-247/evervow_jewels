@@ -1,68 +1,102 @@
 /* styles.css */
-:root {
-  --gold: #b8860b;
-  --navy: #486d83;
-  --dark: #2a2a2a;
-  --light: #f9f9f9;
-}
-
-/* Footer Styles - Will apply to all pages */
+/* ======= Footer Styles ======= */
 footer {
-  background-color: var(--dark);
+  background-color: #2a2a2a;
   color: white;
-  padding: 2rem 0;
-  margin-top: 3rem;
+  padding: 3rem 0;
+  margin-top: auto; /* Pushes footer to bottom */
 }
 
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
 }
 
 .footer-brand h3 {
-  color: var(--gold);
+  color: #b8860b;
   font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.footer-links h4 {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  color: #b8860b;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links li {
   margin-bottom: 0.5rem;
+}
+
+.footer-links a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: #b8860b;
 }
 
 .social-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+  margin-top: 1rem;
 }
 
 .social-links a {
-  color: white;
-  font-size: 1.2rem;
-  transition: all 0.3s ease;
-  width: 2.5rem;
-  height: 2.5rem;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  transition: all 0.3s;
 }
 
 .social-links a:hover {
-  color: var(--gold);
-  transform: translateY(-3px);
+  background-color: #b8860b;
+  transform: translateY(-2px);
 }
 
 .footer-bottom {
   text-align: center;
+  padding-top: 2rem;
   margin-top: 2rem;
-  padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .footer-brand {
+    text-align: center;
+  }
+  
+  .footer-links {
+    text-align: center;
   }
   
   .social-links {
-    justify-content: flex-start;
+    justify-content: center;
   }
 }
