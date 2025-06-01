@@ -215,5 +215,30 @@
       });
     }
   </script>
+<!-- ... Rest of your HTML content ... -->
+
+    <!-- Facebook SDK (if you have it) -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0">
+    </script>
+
+    <!-- Cart Scripts (your existing cart functionality) -->
+    <script>
+        // Your existing cart code here...
+    </script>
+
+    <!-- AUTO-YEAR UPDATE SCRIPT - PLACE THIS RIGHT BEFORE </body> -->
+    <script>
+        // Automatically updates copyright year
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentYear = new Date().getFullYear();
+            document.querySelectorAll('[data-year]').forEach(el => {
+                el.textContent = currentYear;
+            });
+        });
+    </script>
+</body> <!-- This is the closing body tag -->
+</html>
 </body>
 </html>
