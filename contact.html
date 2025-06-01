@@ -35,6 +35,7 @@
             display: inline-flex;
             align-items: center;
             gap: 5px;
+            transition: background 0.3s ease;
         }
         .instagram-follow-button:hover {
             background: #C13584;
@@ -324,10 +325,17 @@
         </div>
     </div>
 
-    <!-- Facebook SDK -->
+    <!-- Facebook SDK - MUST be placed before the closing body tag -->
     <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" 
-        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0">
+    <script>
+        // Load Facebook SDK asynchronously
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0&appId=YOUR_APP_ID&autoLogAppEvents=1";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
     </script>
 
     <script>
@@ -353,6 +361,11 @@
             closeCart.addEventListener('click', () => {
                 cartSidebar.style.transform = 'translateX(100%)';
             });
+        }
+        
+        // Force Facebook widgets to re-render if they didn't load properly
+        if (typeof FB !== 'undefined') {
+            FB.XFBML.parse();
         }
     </script>
 </body>
