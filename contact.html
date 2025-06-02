@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -19,7 +19,6 @@
         .cart-sidebar {
             transition: transform 0.3s ease-in-out;
         }
-        /* Added social buttons style */
         .social-buttons {
             display: flex;
             gap: 15px;
@@ -38,15 +37,44 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col">
-    <!-- Your existing header and mobile navigation remain unchanged -->
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-8">
+                <a href="index.html" class="text-xl font-bold text-gray-800">EverVow Jewels</a>
+                <nav class="hidden md:flex space-x-6">
+                    <a href="index.html" class="text-gray-800 hover:text-amber-700">Home</a>
+                    <a href="shop.html" class="text-gray-800 hover:text-amber-700">Shop</a>
+                    <a href="about.html" class="text-gray-800 hover:text-amber-700">About</a>
+                    <a href="testimonials.html" class="text-gray-800 hover:text-amber-700">Testimonials</a>
+                    <a href="contact.html" class="text-gray-800 hover:text-amber-700 font-semibold">Contact</a>
+                </nav>
+            </div>
+            <button id="cart-button" class="relative text-gray-700 hover:text-amber-700">
+                <i class="fas fa-shopping-cart text-xl"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-amber-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            </button>
+        </div>
+    </header>
 
-    <!-- Hero Section - Added social buttons -->
+    <!-- Mobile Navigation -->
+    <div class="md:hidden bg-gray-100 py-2 px-4">
+        <div class="flex justify-around">
+            <a href="index.html" class="text-gray-800" aria-label="Home"><i class="fas fa-home"></i></a>
+            <a href="shop.html" class="text-gray-800" aria-label="Shop"><i class="fas fa-shopping-bag"></i></a>
+            <a href="about.html" class="text-gray-800" aria-label="About"><i class="fas fa-info-circle"></i></a>
+            <a href="testimonials.html" class="text-gray-800" aria-label="Testimonials"><i class="fas fa-star"></i></a>
+            <a href="contact.html" class="text-amber-600" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
     <section class="contact-hero bg-amber-50 text-white py-20 md:py-32">
         <div class="container mx-auto px-4 text-center">
             <h1 class="text-4xl md:text-6xl font-playfair font-bold mb-6">Contact Us</h1>
             <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">We'd love to hear from you. Reach out for inquiries, custom orders, or just to say hello!</p>
             
-            <!-- Added social buttons container -->
+            <!-- Social Buttons -->
             <div class="social-buttons">
                 <div class="fb-like" 
                      data-href="https://www.facebook.com/katlegogaolekwe" 
@@ -65,16 +93,217 @@
         </div>
     </section>
 
-    <!-- Your existing contact form and info sections remain unchanged -->
+    <!-- Contact Content -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Contact Form -->
+                <div>
+                    <h2 class="text-3xl font-playfair font-bold mb-6">Send Us a Message</h2>
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-700 mb-2">Your Name</label>
+                            <input type="text" id="name" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="email" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 mb-2">Your Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500"></textarea>
+                        </div>
+                        <button type="submit" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-lg font-medium transition duration-300">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
 
-    <!-- Your existing footer remains unchanged -->
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl font-playfair font-bold mb-6">Our Information</h2>
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="text-amber-600 text-xl mt-1 mr-4">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Our Boutique</h3>
+                                <p class="text-gray-700">123 Jewel Street, Makati City, Metro Manila, Philippines</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-amber-600 text-xl mt-1 mr-4">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Phone</h3>
+                                <p class="text-gray-700">+63 912 345 6789</p>
+                                <p class="text-gray-700">Mon-Fri: 9am-6pm</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-amber-600 text-xl mt-1 mr-4">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg mb-1">Email</h3>
+                                <p class="text-gray-700">info@evervowjewels.com</p>
+                                <p class="text-gray-700">Customer Support: support@evervowjewels.com</p>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- Added Facebook SDK -->
+                    <!-- Social Media Links -->
+                    <div class="mt-10">
+                        <h3 class="font-semibold text-lg mb-4">Follow Us</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://www.facebook.com/katlegogaolekwe" target="_blank" class="text-gray-700 hover:text-amber-600 text-2xl">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="https://www.instagram.com/katlegomichellegaolekwe" target="_blank" class="text-gray-700 hover:text-amber-600 text-2xl">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white mt-auto">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-playfair font-bold mb-4">EverVow Jewels</h3>
+                    <p class="text-gray-400">Timeless elegance crafted for you since <span data-year>2025</span>.</p>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="shop.html" class="text-gray-400 hover:text-white">Shop</a></li>
+                        <li><a href="about.html" class="text-gray-400 hover:text-white">Our Story</a></li>
+                        <li><a href="testimonials.html" class="text-gray-400 hover:text-white">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Customer Service</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping Policy</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Returns & Exchanges</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                        <li><a href="contact.html" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Follow Us</h4>
+                    <div class="mb-4">
+                        <div class="fb-page"
+                          data-href="https://www.facebook.com/katlegogaolekwe"
+                          data-tabs="timeline"
+                          data-width=""
+                          data-height=""
+                          data-small-header="false"
+                          data-adapt-container-width="true"
+                          data-hide-cover="false"
+                          data-show-facepile="true">
+                          <blockquote cite="https://www.facebook.com/katlegogaolekwe" class="fb-xfbml-parse-ignore">
+                            <a href="https://www.facebook.com/katlegogaolekwe">Katlego Gaolekwe</a>
+                          </blockquote>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="https://www.facebook.com/katlegogaolekwe" target="_blank" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/katlegomichellegaolekwe" target="_blank" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; <span data-year>2025</span> EverVow Jewels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="cart-sidebar fixed inset-y-0 right-0 w-full sm:w-96 bg-white shadow-xl transform translate-x-full z-50">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold">Your Cart</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="flex-1 overflow-y-auto">
+                <div class="text-center py-8 text-gray-500">
+                    <i class="fas fa-shopping-cart text-4xl mb-4"></i>
+                    <p>Your cart is empty</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 pt-4">
+                <div class="flex justify-between mb-4">
+                    <span class="font-semibold">Subtotal</span>
+                    <span id="cart-subtotal">₱0.00</span>
+                </div>
+                <a href="checkout.html" class="block w-full bg-amber-600 hover:bg-amber-700 text-white text-center py-3 rounded-lg font-medium transition duration-300">
+                    Checkout
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Facebook SDK -->
     <div id="fb-root"></div>
     <script async defer crossorigin="anonymous" 
         src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0">
     </script>
 
-    <!-- Your existing cart and other scripts remain unchanged -->
+    <!-- Cart Script -->
+    <script>
+        // Cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const cartCount = document.getElementById('cart-count');
+                let count = parseInt(cartCount.textContent) || 0;
+                cartCount.textContent = count + 1;
+                cartCount.classList.remove('hidden');
+            });
+        });
+
+        const cartButton = document.getElementById('cart-button');
+        const closeCart = document.getElementById('close-cart');
+        const cartSidebar = document.getElementById('cart-sidebar');
+
+        if (cartButton && closeCart && cartSidebar) {
+            cartButton.addEventListener('click', () => {
+                cartSidebar.style.transform = 'translateX(0)';
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartSidebar.style.transform = 'translateX(100%)';
+            });
+        }
+    </script>
+
+    <!-- Year Update Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yearElements = document.querySelectorAll('[data-year]');
+            const currentYear = new Date().getFullYear();
+            
+            yearElements.forEach(element => {
+                element.textContent = currentYear;
+            });
+        });
+    </script>
 </body>
 </html>
